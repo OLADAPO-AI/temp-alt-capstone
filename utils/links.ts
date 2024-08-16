@@ -8,6 +8,13 @@ export const links: NavLink[] = [
   { href: '/about', label: 'about' },
   { href: '/hospitals', label: 'Find hospitals' },
   { href: '/location', label: 'Data Download' },
+  { href: '/admin/records', label: 'dashboard' },
+]
+
+export const adminLinks: NavLink[] = [
+  { href: '/admin/records', label: 'records' },
+  { href: '/admin/hospitals', label: ' my hospitals' },
+  { href: '/admin/hospitals/create', label: 'create hospitals' },
 ]
 export const statesInNigeria = [
   'Abia',

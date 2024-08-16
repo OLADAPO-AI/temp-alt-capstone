@@ -3,11 +3,22 @@ import { useState } from 'react'
 import { Hospital } from '@prisma/client'
 import Modal from './Modal'
 import { Button } from '../ui/button'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination'
 
 const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
   const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(
     null
   )
+  const [currentPage, setCurrentPage] = useState(1)
+  const hospitalsPerPage = 5
 
   const handleViewDetails = (id: string) => {
     const hospital = hospitals.find((hospital) => hospital.id === id)
@@ -17,6 +28,20 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
   const handleCloseModal = () => {
     setSelectedHospital(null)
   }
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+    }
+  }
+
+  const indexOfLastHospital = currentPage * hospitalsPerPage
+  const indexOfFirstHospital = indexOfLastHospital - hospitalsPerPage
+  const currentHospitals = hospitals.slice(
+    indexOfFirstHospital,
+    indexOfLastHospital
+  )
+  const totalPages = Math.ceil(hospitals.length / hospitalsPerPage)
 
   return (
     <div className="container mx-auto px-4 sm:px-8">
@@ -61,7 +86,7 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
               </tr>
             </thead>
             <tbody>
-              {hospitals.map((hospital) => {
+              {currentHospitals.map((hospital) => {
                 const {
                   id,
                   State,
@@ -80,7 +105,7 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
                     <td className="px-3 py-3 border border-gray-200 bg-white text-sm text-gray-900">
                       {State}
                     </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm  text-gray-900">
+                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
                       {LGA}
                     </td>
                     <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
@@ -122,6 +147,42 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
           </table>
         </div>
       </div>
+
+      {/* Pagination Component */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
+          </PaginationItem>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink
+                isActive={page === currentPage}
+                onClick={() => handlePageChange(page)}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          {totalPages > 5 && currentPage < totalPages - 2 && (
+            <>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePageChange(totalPages)}>
+                  {totalPages}
+                </PaginationLink>
+              </PaginationItem>
+            </>
+          )}
+          <PaginationItem>
+            <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
 
       {/* Modal to show hospital details */}
       <Modal
