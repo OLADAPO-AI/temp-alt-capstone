@@ -33,7 +33,7 @@ export function InputFacility() {
     <Input
       type="search"
       placeholder="Enter facility name"
-      className="w-3/6 dark:bg-muted"
+      className="w-full dark:bg-muted"
       onChange={(e) => {
         setSearch(e.target.value)
         handleSearch(e.target.value)

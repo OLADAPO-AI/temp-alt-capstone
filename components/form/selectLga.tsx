@@ -14,16 +14,12 @@ export function SelectLga() {
   return (
     <Select>
       <SelectTrigger className="w-[300px]">
-        <SelectValue placeholder="--Select LGA--" />
+        <SelectValue placeholder="--Select Ownership--" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          <SelectItem value="grapes">Private</SelectItem>
+          <SelectItem value="pineapple">Public</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
