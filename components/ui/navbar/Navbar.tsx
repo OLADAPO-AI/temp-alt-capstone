@@ -10,9 +10,9 @@ import DarkMode from './DarkMode'
 function Navbar() {
   return (
     <nav className="border-2">
-      <Container className="flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap py-8 ">
+      <Container className="flex flex-row justify-between sm:flex-row sm:justify-between sm:items-center flex-wrap py-8 ">
         <Logo />
-        <div className="flex gap-6 items-center z-50">
+        <div className="md:flex gap-6 items-center z-50 hidden">
           <FindHospital />
           <About />
           <Service />
