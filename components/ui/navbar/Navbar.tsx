@@ -9,7 +9,7 @@ import DarkMode from './DarkMode'
 
 function Navbar() {
   return (
-    <nav className="border-2">
+    <nav className="border-2 rounded-lg">
       <Container className="flex flex-row justify-between sm:flex-row sm:justify-between sm:items-center flex-wrap py-8 ">
         <Logo />
         <div className="md:flex gap-6 items-center z-50 hidden">

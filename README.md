@@ -30,7 +30,6 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
 ### Export Hospitals
 
 - **Description**: Users can export the list of hospitals to a CSV file, making it easy to save and share the information.
-- **Implementation**: This feature utilizes Firebase's built-in file storage.
 
 ### Share Hospitals
 
@@ -40,7 +39,7 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
 ### User Authentication
 
 - **Description**: Admin users must create an account to access the platform's admin features.
-- **Implementation**: Firebase's built-in authentication feature, supporting multiple authentication methods, including email/password and social media logins.
+- **Implementation**: Clerk's built-in authentication feature, supporting multiple authentication methods, including email/password and social media logins.
 
 ### Markdown Support
 
@@ -52,7 +51,7 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
 - **Frontend**: Next.js, Shadcn, Tailwind CSS
 - **Backend**: Superbase, Prisma
 - **Authentication**: Clerk
-- **File Storage and Sharing**: Firebase
+<!-- - **File Storage and Sharing**: Firebase -->
 - **Database**: Supabase, Prisma
 - **Language**: TypeScript
 - **Testing**: jest
@@ -62,7 +61,7 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-repo/carefinder.git
+   git clone https://github.com/OLADAPO-AI/temp-alt-capstone.git
    cd carefinder
    ```
 
@@ -77,7 +76,7 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
    Create a `.env.local` file in the root directory and add your Firebase, Clerk, and Supabase credentials:
 
    ```plaintext
-   NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+   NEXT_PUBLIC_SUPERBASE_API_KEY=your-api-key
    NEXT_PUBLIC_CLERK_FRONTEND_API=your-clerk-frontend-api
    NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
    NEXT_PUBLIC_SUPABASE_KEY=your-supabase-key
@@ -95,14 +94,14 @@ Carefinder is a simple and efficient tool designed to help users find, export, a
 
 - **Search Hospitals**: Navigate to the search page, enter your location or choose from the list of cities, and view the list of hospitals.
 - **Export List**: Click on the "Export" button to download the list of hospitals as a CSV file.
-- **Share List**: Use the "Share" button to email or generate a shareable link.
+- **Share List**: Use the Social media button to generate a shareable link on the modal.
 - **Admin Features**: Log in as an admin to access hospital entry creation and Markdown content editing.
 
 ## Best Practices
 
 - **Scalable Codebase**: Follow proper linting and formatting with Prettier and ESLint.
 - **TypeScript**: Ensure type safety by using TypeScript with either Vue.js or React.
-- **Backend Choice**: Use Firebase, Hasura, or a similar backend to store user data and handle authentication.
+- **Backend Choice**: Use Superbase, Prisma and Clerk backend to store user data and handle authentication.
 - **Form Validation**: Implement thorough form validation across the platform.
 - **Testing**: Include at least 2 unit tests and 3 component tests in the codebase.
 
