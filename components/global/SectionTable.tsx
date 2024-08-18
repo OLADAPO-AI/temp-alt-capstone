@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Hospital } from '@prisma/client'
 import Modal from './Modal'
 import { Button } from '../ui/button'
@@ -23,6 +23,7 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
   const handleViewDetails = (id: string) => {
     const hospital = hospitals.find((hospital) => hospital.id === id)
     setSelectedHospital(hospital || null)
+    console.log('Selected Hospital:', hospital) // Debugging log
   }
 
   const handleCloseModal = () => {
@@ -35,6 +36,47 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
     }
   }
 
+  const handleExportData = () => {
+    const csvContent =
+      'data:text/csv;charset=utf-8,' +
+      [
+        [
+          'State',
+          'LGA',
+          'Ward',
+          'Facility',
+          'Name',
+          'Email',
+          'Address',
+          'Phone',
+          'Level',
+          'Ownership',
+        ].join(','),
+        ...hospitals.map((hospital) =>
+          [
+            hospital.State,
+            hospital.LGA,
+            hospital.Ward,
+            hospital.Facility,
+            hospital.Name,
+            hospital.Email,
+            hospital.Address,
+            hospital.Phone,
+            hospital.Level,
+            hospital.Ownership,
+          ].join(',')
+        ),
+      ].join('\n')
+
+    const encodedUri = encodeURI(csvContent)
+    const link = document.createElement('a')
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'hospitals_data.csv')
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   const indexOfLastHospital = currentPage * hospitalsPerPage
   const indexOfFirstHospital = indexOfLastHospital - hospitalsPerPage
   const currentHospitals = hospitals.slice(
@@ -44,10 +86,18 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
   const totalPages = Math.ceil(hospitals.length / hospitalsPerPage)
 
   return (
-    <div className="container mx-auto px-4 sm:px-8">
+    <div className="container px-4 sm:px-8">
       <div className="py-8">
-        <div className="overflow-x-auto">
-          <table className="min-w-full leading-normal">
+        <div className="flex justify-end mb-4">
+          <Button
+            onClick={handleExportData}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
+            Export Data
+          </Button>
+        </div>
+        <div className="overflow-x-auto rounded-xl">
+          <table className="min-w-full leading-normal ">
             <thead>
               <tr>
                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
@@ -66,83 +116,38 @@ const SectionTable = ({ hospitals }: { hospitals: Hospital[] }) => {
                   Name
                 </th>
                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Email
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Address
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Phone
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Level
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                  Ownershipp
-                </th>
-                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              {currentHospitals.map((hospital) => {
-                const {
-                  id,
-                  State,
-                  LGA,
-                  Ward,
-                  Facility,
-                  Name,
-                  Email,
-                  Address,
-                  Phone,
-                  Level,
-                  Ownership,
-                } = hospital
-                return (
-                  <tr key={id}>
-                    <td className="px-3 py-3 border border-gray-200 bg-white text-sm text-gray-900">
-                      {State}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {LGA}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Ward}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Facility}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Name}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900 ">
-                      {Email}
-                    </td>
-                    <td className="px-2 py-2 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Address}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Phone}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Level}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      {Ownership}
-                    </td>
-                    <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
-                      <Button
-                        onClick={() => handleViewDetails(id)}
-                        className="bg-blue-500 text-white px-3 py-1 rounded"
-                      >
-                        View Details
-                      </Button>
-                    </td>
-                  </tr>
-                )
-              })}
+              {currentHospitals.map((hospital) => (
+                <tr key={hospital.id}>
+                  <td className="px-3 py-3 border border-gray-200 bg-white text-sm text-gray-900">
+                    {hospital.State}
+                  </td>
+                  <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
+                    {hospital.LGA}
+                  </td>
+                  <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
+                    {hospital.Ward}
+                  </td>
+                  <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
+                    {hospital.Facility}
+                  </td>
+                  <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
+                    {hospital.Name}
+                  </td>
+                  <td className="px-5 py-5 border border-gray-200 bg-white text-sm text-gray-900">
+                    <Button
+                      onClick={() => handleViewDetails(hospital.id)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded"
+                    >
+                      View Details
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

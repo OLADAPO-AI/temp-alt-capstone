@@ -14,7 +14,7 @@ type FlyoutLinkProps = {
 const FindHospital: React.FC = () => {
   return (
     <div className="">
-      <FlyoutLink href="#" FlyoutContent={PricingContent}>
+      <FlyoutLink href="/hospitals" FlyoutContent={PricingContent}>
         <h2 className=" text-primary text-base font-bold">Find an Hospital</h2>
       </FlyoutLink>
     </div>

@@ -13,7 +13,7 @@ import {
 export function SelectLga() {
   return (
     <Select>
-      <SelectTrigger className="w-[300px]">
+      <SelectTrigger className="md:w-[300px] w-[150px]">
         <SelectValue placeholder="--Select Ownership--" />
       </SelectTrigger>
       <SelectContent>

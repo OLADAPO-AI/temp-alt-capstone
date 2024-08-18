@@ -13,7 +13,7 @@ import { statesInNigeria } from '@/utils/links'
 const AllState: React.FC = ({}) => {
   return (
     <Select>
-      <SelectTrigger className="w-[300px]">
+      <SelectTrigger className="md:w-[300px] w-[150px]">
         <SelectValue placeholder="--All State--" />
       </SelectTrigger>
       <SelectContent>
