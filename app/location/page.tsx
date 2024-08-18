@@ -12,7 +12,7 @@ function LocationPage() {
       <form action="" className="flex flex-col mt-[30px] w-5/6 ">
         <hr className="border-t-2 border-gray-500" />
         {/* firstname field */}
-        <div className="flex flex-row align-middle p-3 items-center w-5/6 h-[60px] gap-2">
+        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -28,7 +28,7 @@ function LocationPage() {
           />
         </div>
         {/* lastname field */}
-        <div className="flex flex-row align-middle p-3 items-center w-5/6 h-[60px] gap-2">
+        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -39,12 +39,12 @@ function LocationPage() {
             type="text"
             name="last name"
             id="first name"
-            placeholder="first Name"
+            placeholder="last Name"
             className="border-2  w-full p-2 font-[400] text-[14px] leading-[16.8px] rounded"
           />
         </div>
         {/* Email address field */}
-        <div className="flex flex-row align-middle p-3 items-center w-5/6 h-[60px] gap-2">
+        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -60,7 +60,7 @@ function LocationPage() {
           />
         </div>
         {/* Organisation field */}
-        <div className="flex flex-row align-middle p-3 items-center w-5/6 h-[60px] gap-2">
+        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -76,7 +76,7 @@ function LocationPage() {
           />
         </div>
 
-        <div className="flex flex-row align-middle p-3 mt-4 items-center w-5/6 h-[60px] gap-2">
+        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="organisation"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -93,10 +93,10 @@ function LocationPage() {
         </div>
 
         {/* Button */}
-        <div className="mx-auto mt-[30px]">
+        <div className="mx-auto  mt-[30px]">
           <button
             type="submit"
-            className="w-[483px] h-[52px] bg-[#038E7D] text-neutral-100 rounded-md hover:bg-neutral-100 hover:text-[#038e7d] transition ease-in duration-300"
+            className=" w-[200px] ml-7 md:w-[500px] h-[52px] bg-primary text-neutral-100 rounded-md hover:bg-neutral-100 hover:text-[#038e7d] transition ease-in duration-300"
           >
             Submit
           </button>
