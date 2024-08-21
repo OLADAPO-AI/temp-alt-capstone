@@ -15,7 +15,7 @@ function LocationPage() {
         <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
-            className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
+            className="font-[400] text-[14px]  leading-[16.8px]"
           >
             First Name
           </label>
@@ -49,7 +49,7 @@ function LocationPage() {
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
           >
-            e-Mail Address
+            E-Mail Address
           </label>
           <input
             type="email"
@@ -60,7 +60,7 @@ function LocationPage() {
           />
         </div>
         {/* Organisation field */}
-        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
+        <div className="flex flex-row align-middle  mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="credit"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
@@ -76,7 +76,7 @@ function LocationPage() {
           />
         </div>
 
-        <div className="flex flex-row align-middle p-3  mt-4 justify-between items-center w-full h-[60px] gap-2">
+        <div className="flex flex-row align-middle   mt-4 justify-between items-center w-full h-[60px] gap-2">
           <label
             htmlFor="organisation"
             className="font-[400] text-[14px] w-1/4 leading-[16.8px]"
